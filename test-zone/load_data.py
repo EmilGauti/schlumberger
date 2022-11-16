@@ -4,28 +4,37 @@ import glob
 from torchvision import transforms     
 import torch
 
-def load_images(flip=False):
+def load_images():
     test_images = []
     test_labels = []
-    convert_tensor = transforms.ToTensor()
-    for label_path in glob.glob("simulated_data/Test/*_target.png"):
+    
+    X_test = torch.zeros([20,231,231], dtype=torch.float32)
+    Y_test = torch.zeros([20,231,231], dtype=torch.float32)
+    X_train = torch.zeros([40,231,231], dtype=torch.float32)
+    Y_train = torch.zeros([40,231,231], dtype=torch.float32)
+    convert_tensor = transforms.PILToTensor()
+    for i, label_path in enumerate(glob.glob("simulated_data/Test/*_target.png")):
         filename = label_path.split("/")[-1]
         path = label_path.split(filename)[0]
         id = filename.split("_")[0]
         image_path=path+id+".png"
-        #image = imageio.imread(image_path)
-        image = Image.open(image_path).convert('L')
-        image = convert_tensor(image)
-        #image = image[:,:,0]
-        #image = np.moveaxis(image, -1,0)
-        #label = imageio.imread(label_path)
-        label = Image.open(label_path).convert('L')
-        label = convert_tensor(label)
-        test_images.append(image)
-        test_labels.append(label)  
 
-    X_test= torch.tensor(test_images)
-    #Y_test= test_labels
-    print(X_test.shape)
-    #return X_train, Y_train, X_test, Y_test
-load_images()
+        image = Image.open(image_path).convert('L')
+        X_test[i,:,:] = convert_tensor(image)
+        
+        label = Image.open(label_path).convert('L')
+        Y_test[i,:,:] = convert_tensor(label)
+    for i, label_path in enumerate(glob.glob("simulated_data/Train/*_target.png")):
+        filename = label_path.split("/")[-1]
+        path = label_path.split(filename)[0]
+        id = filename.split("_")[0]
+        image_path=path+id+".png"
+
+        image = Image.open(image_path).convert('L')
+        X_train[i,:,:] = convert_tensor(image)
+        
+        label = Image.open(label_path).convert('L')
+        Y_train[i,:,:] = convert_tensor(label)
+    
+    return X_train, Y_train, X_test, Y_test
+#load_images()
