@@ -10,8 +10,8 @@ def load_images():
     
     X_test = torch.zeros([40,231,231], dtype=torch.float32)
     Y_test = torch.zeros([40,231,231], dtype=torch.float32)
-    X_train = torch.zeros([80,231,231], dtype=torch.float32)
-    Y_train = torch.zeros([80,231,231], dtype=torch.float32)
+    X_train = torch.zeros([140,231,231], dtype=torch.float32)
+    Y_train = torch.zeros([140,231,231], dtype=torch.float32)
     convert_tensor = transforms.PILToTensor()
     for i, label_path in enumerate(glob.glob("simulated_data/Test/*_target.png")):
         filename = label_path.split("/")[-1]
