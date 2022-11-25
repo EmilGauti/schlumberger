@@ -4,8 +4,11 @@ If running for first time:
 docker pull heartexlabs/label-studio:latest
 
 This starts the container:
-docker run -it -p 8080:8080 -v `pwd`/data_seismic:/label-studio/data heartexlabs/label-studio:latest
+docker run -it -p 8080:8080 -v `pwd`/WestCam/diffImages:/label-studio/data heartexlabs/label-studio:latest
 
 Then visit: http://localhost:8080/
 or for fanis/Raphael go to http://192.168.0.106:8080/ if connected to baby network
 or now with port forwarding we can use: http://31.208.107.131:8080/user/login/
+
+
+docker run -it -p 8080:8080 --env LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=true --env LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=/label-studio/files -v $(pwd)/WestCam/diffImages:/label-studio/files heartexlabs/label-studio:latest label-studio
