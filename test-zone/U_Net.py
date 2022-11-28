@@ -84,6 +84,8 @@ class UNet(nn.Module):
 		self.outSize = outSize
 	def forward(self, x):
 		# grab the features from the encoder
+		if len(x.shape)==3:
+			x = torch.unsqueeze(x,1)
 		encFeatures = self.encoder(x)
 		# pass the encoder features through decoder making sure that
 		# their dimensions are suited for concatenation
