@@ -1,5 +1,5 @@
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageOps
 import glob
 from torchvision import transforms
 import torchvision     
@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 import torch
 import random
+import cv2 as cv
 
 def load_images():
     test_images = []
@@ -37,7 +38,11 @@ def load_images():
         image_path=path+id+".png"
 
         image = Image.open(image_path).convert('L')
-        X_train[i,:,:] = convert_tensor(image)
+        image = np.array(image)
+        clahe = cv.createCLAHE(clipLimit=2.0,tileGridSize=(16,16))
+        image = clahe.apply(image)
+        X_train[i,:,:] = torch.tensor(image)
+        #X_train[i,:,:] = convert_tensor(image)
 
         label = Image.open(label_path).convert('L')
         Y_train[i,:,:] = convert_tensor(label)
@@ -74,16 +79,24 @@ class CustomTensorDataset(Dataset):
     def __len__(self):
         return self.tensors[0].size(0)
 
-"""
+
 tensor_x, tensor_y = load_images()
+tensor_x = tensor_x
+tensor_y = tensor_y/255
+plt.imshow(tensor_x[40,:,:],cmap="gray")
+plt.show()
+"""
 #transform = transforms.Compose([transforms.RandomHorizontalFlip(p=0.5),transforms.RandomVerticalFlip(p=0.5)])
 train_dataset_vf = CustomTensorDataset(tensors=(tensor_x, tensor_y), transform=True,vflip_p=0.5,hflip_p=0.5)
 print("aplsd")
 my_dataloader = DataLoader(train_dataset_vf,shuffle=False,batch_size=2)
+trans = transforms.ToPILImage()
 for i in range(4):
     for data in my_dataloader:
         print("inside")
         x,y=data
+        x = x.detach().numpy()
+        y = y.detach().numpy()
         print(x.shape)
         print(y.shape)
         plt.subplot(1,2,1)
