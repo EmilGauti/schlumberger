@@ -56,3 +56,6 @@ class BasicNet(nn.Module):
       # Apply softmax to x
       #output = F.log_softmax(x, dim=1)
       return output
+from torchsummary import summary
+net = BasicNet_old()
+summary(net,(1,128,128))
