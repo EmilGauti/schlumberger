@@ -1,0 +1,41 @@
+{
+  "id": 89,
+  "created_username": " emilgauti+labelstudio@gmail.com, 1",
+  "created_ago": "21\u00a0minutes",
+  "completed_by": {
+    "id": 1,
+    "first_name": "",
+    "last_name": "",
+    "email": "emilgauti+labelstudio@gmail.com"
+  },
+  "task": {
+    "id": 34,
+    "data": {
+      "image": "/data/local-files/?d=images/106.png"
+    },
+    "meta": {},
+    "created_at": "2022-11-23T15:31:20.570400Z",
+    "updated_at": "2022-11-23T15:47:21.373179Z",
+    "is_labeled": true,
+    "overlap": 1,
+    "inner_id": 34,
+    "total_annotations": 1,
+    "cancelled_annotations": 0,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 1,
+    "updated_by": 1,
+    "file_upload": null,
+    "comment_authors": []
+  },
+  "result": [],
+  "was_cancelled": false,
+  "ground_truth": false,
+  "created_at": "2022-11-23T15:47:21.291049Z",
+  "updated_at": "2022-11-23T15:47:21.291163Z",
+  "lead_time": 4.972,
+  "parent_prediction": null,
+  "parent_annotation": null
+}

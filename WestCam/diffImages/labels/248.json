@@ -1,0 +1,41 @@
+{
+  "id": 248,
+  "created_username": " ashrufraphael@gmail.com, 3",
+  "created_ago": "0\u00a0minutes",
+  "completed_by": {
+    "id": 3,
+    "first_name": "",
+    "last_name": "",
+    "email": "ashrufraphael@gmail.com"
+  },
+  "task": {
+    "id": 733,
+    "data": {
+      "image": "/data/local-files/?d=images/736.png"
+    },
+    "meta": {},
+    "created_at": "2022-11-23T15:31:35.921718Z",
+    "updated_at": "2022-11-23T15:31:35.921857Z",
+    "is_labeled": false,
+    "overlap": 1,
+    "inner_id": 733,
+    "total_annotations": 0,
+    "cancelled_annotations": 1,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 1,
+    "updated_by": null,
+    "file_upload": null,
+    "comment_authors": []
+  },
+  "result": [],
+  "was_cancelled": true,
+  "ground_truth": false,
+  "created_at": "2022-11-24T14:08:21.173508Z",
+  "updated_at": "2022-11-24T14:08:21.173748Z",
+  "lead_time": 54.996,
+  "parent_prediction": null,
+  "parent_annotation": null
+}

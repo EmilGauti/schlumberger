@@ -1,0 +1,41 @@
+{
+  "id": 138,
+  "created_username": " fanis.papakonstantinou@gmail.com, 2",
+  "created_ago": "16\u00a0minutes",
+  "completed_by": {
+    "id": 2,
+    "first_name": "",
+    "last_name": "",
+    "email": "fanis.papakonstantinou@gmail.com"
+  },
+  "task": {
+    "id": 49,
+    "data": {
+      "image": "/data/local-files/?d=images/12.png"
+    },
+    "meta": {},
+    "created_at": "2022-11-23T15:31:20.901506Z",
+    "updated_at": "2022-11-23T15:52:24.526564Z",
+    "is_labeled": true,
+    "overlap": 1,
+    "inner_id": 49,
+    "total_annotations": 1,
+    "cancelled_annotations": 0,
+    "total_predictions": 0,
+    "comment_count": 0,
+    "unresolved_comment_count": 0,
+    "last_comment_updated_at": null,
+    "project": 1,
+    "updated_by": 2,
+    "file_upload": null,
+    "comment_authors": []
+  },
+  "result": [],
+  "was_cancelled": false,
+  "ground_truth": false,
+  "created_at": "2022-11-23T15:52:24.359000Z",
+  "updated_at": "2022-11-23T15:52:24.359235Z",
+  "lead_time": 0.868,
+  "parent_prediction": null,
+  "parent_annotation": null
+}
