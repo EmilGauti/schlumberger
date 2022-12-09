@@ -150,8 +150,11 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+Hca.zip
+HI.zip
 data_seismic/export/project-2-at-2022-11-11-15-11-8628dce5.json
 data_seismic/
+Hca/
 test-zone/MNIST/
 WestCam/*.zgy
 WestCam/arrays
