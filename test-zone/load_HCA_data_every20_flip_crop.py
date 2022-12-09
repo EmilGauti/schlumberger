@@ -86,7 +86,7 @@ class CustomTensorDataset(Dataset):
         return self.tensors[0].size(0)
 
 
-tensor_x, tensor_y = load_images()
+#tensor_x, tensor_y = load_images()
 #tensor_x = tensor_x/255
 #tensor_y = tensor_y/255
 #plt.imshow(tensor_x[400,:,:],cmap="gray")
