@@ -10,7 +10,7 @@ import random
 import cv2 as cv
 from PIL import Image
 
-def load_images():
+def load_images(skip=20):
     test_images = []
     test_labels = []
     
@@ -37,7 +37,7 @@ def load_images():
         #path = label_path.split(filename)[0]
         id = filename.split("_")[-1]
         id = id.split(".")[0]
-        if int(id)%20==0:
+        if int(id)%skip==0:
             image_path="../Hca/Hca_images/Hca_image_"+id+".png"
 
             image = Image.open(image_path).convert('L')
