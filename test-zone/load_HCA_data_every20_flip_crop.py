@@ -16,8 +16,8 @@ def load_images():
     
     #X_test = torch.zeros([0,231,231], dtype=torch.float32)
     #Y_test = torch.zeros([0,231,231], dtype=torch.float32)
-    X_train = torch.zeros([926,891,1055], dtype=torch.float32)
-    Y_train = torch.zeros([926,891,1055], dtype=torch.float32)
+    X_train = torch.zeros([1,891,1055], dtype=torch.float32)
+    Y_train = torch.zeros([1,891,1055], dtype=torch.float32)
     convert_tensor = transforms.PILToTensor()
     """
     for i, label_path in enumerate(glob.glob("simulated_data/Test/*_target.png")):
@@ -37,19 +37,28 @@ def load_images():
         #path = label_path.split(filename)[0]
         id = filename.split("_")[-1]
         id = id.split(".")[0]
-        image_path="../Hca/Hca_images/Hca_image_"+id+".png"
+        if int(id)%20==0:
+            image_path="../Hca/Hca_images/Hca_image_"+id+".png"
 
-        image = Image.open(image_path).convert('L')
-        image = np.array(image)
-        clahe = cv.createCLAHE(clipLimit=2.0,tileGridSize=(16,16))
-        image = clahe.apply(image)
-        X_train[i,:,:] = torch.tensor(image)
-        #X_train[i,:,:] = convert_tensor(image)
+            image = Image.open(image_path).convert('L')
+            image = np.array(image)
+            clahe = cv.createCLAHE(clipLimit=2.0,tileGridSize=(16,16))
+            image = clahe.apply(image)
+            image_tensor = torch.tensor(image)
+            image_tensor = torch.unsqueeze(image_tensor,0)
+            X_train = torch.cat((X_train,image_tensor))
+            #X_train[i,:,:] = torch.tensor(image)
+            #X_train[i,:,:] = convert_tensor(image)
 
-        label = Image.open(label_path).convert('L')
-        Y_train[i,:,:] = convert_tensor(label)
+            label = Image.open(label_path).convert('L')
+            label_tensor = convert_tensor(label)
+            label_tensor = torch.unsqueeze(label_tensor,0)
+            Y_train = torch.cat((Y_train, convert_tensor(label)))
+    X_train_red = X_train[1:,:,:]
+    Y_train_red = Y_train[1:,:,:]
+    print(len(X_train_red),"images loaded from Hca")
     
-    return X_train, Y_train#, X_test, Y_test
+    return X_train_red, Y_train_red#, X_test, Y_test
 
 class CustomTensorDataset(Dataset):
     """TensorDataset with support of transforms.
@@ -85,16 +94,16 @@ class CustomTensorDataset(Dataset):
     def __len__(self):
         return self.tensors[0].size(0)
 
-
-#tensor_x, tensor_y = load_images()
-#tensor_x = tensor_x/255
-#tensor_y = tensor_y/255
-#plt.imshow(tensor_x[400,:,:],cmap="gray")
-#plt.show()
+"""
+tensor_x, tensor_y = load_images()
+tensor_x = tensor_x/255
+tensor_y = tensor_y/255
+plt.imshow(tensor_x[0,:,:],cmap="gray")
+plt.show()
 
 
 # Plot from val/test tensor
-"""
+
 def generate_pic(tensor_x_val, tensor_y_val, im_nr):
     image = tensor_x_val[im_nr, :, :]
     image = torch.unsqueeze(image, 0)
